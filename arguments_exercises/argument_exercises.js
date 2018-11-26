@@ -110,3 +110,20 @@ Function.prototype.curry = function(numArgs) {
 };
 
 console.log(sumThree.curry(3)(4)(20)(6)); // == 30
+
+// Curry with spread
+Function.prototype.curry2 = function(numArgs) {
+  const numbers = [];
+  const that = this;
+  const _curry = function(number) {
+    numbers.push(number);
+    if (numArgs === numbers.length) {
+      return that.call(that, ...numbers);
+    } else {
+      return _curry;
+    }
+  };
+  return _curry;
+};
+
+console.log(sumThree.curry2(3)(4)(20)(6)); // == 30
