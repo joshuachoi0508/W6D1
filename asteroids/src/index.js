@@ -8,3 +8,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 const MovingObject = require("./moving_object.js");
 window.MovingObject = MovingObject;
+
+const Asteroid = require("./asteroid.js");
+window.Asteroid = Asteroid;

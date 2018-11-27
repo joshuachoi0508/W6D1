@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/asteroid.js":
+/*!*************************!*\
+  !*** ./src/asteroid.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Util = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\n\nfunction Asteroid (options) {\n  this.pos = options.pos;\n  this.vel = [10, 10];\n  this.color = \"#000000\";\n  this.radius = 10;\n}\n\nUtil.inherits(Asteroid, MovingObject);\n\n// Asteroid.prototype.constructor = MovingObject.prototype.constructor(this.pos, this.vel, \"black\", 10);\n\nmodule.exports = Asteroid;\n\n\n//# sourceURL=webpack:///./src/asteroid.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -93,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log(\"Webpack is working!\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function(event) {\n  const c = document.getElementById(\"game-canvas\");\n  const ctx = c.getContext(\"2d\");\n  window.ctx = ctx;\n});\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"Webpack is working!\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function(event) {\n  const c = document.getElementById(\"game-canvas\");\n  const ctx = c.getContext(\"2d\");\n  window.ctx = ctx;\n});\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\nconst Asteroid = __webpack_require__(/*! ./asteroid.js */ \"./src/asteroid.js\");\nwindow.Asteroid = Asteroid;\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -104,7 +115,18 @@ eval("console.log(\"Webpack is working!\");\n\ndocument.addEventListener(\"DOMCo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = options.vel;\n  this.radius = options.radius;\n  this.color = options.color;\n}\n\nMovingObject.prototype.draw = function(ctx) {\n  ctx.beginPath();\n  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);\n  ctx.strokeStyle = \"green\";\n  ctx.stroke();\n  ctx.fillStyle = \"blue\";\n  ctx.fill();\n};\n\nMovingObject.prototype.move = function() {\n  let new_pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];\n  this.pos = new_pos;\n  return new_pos;\n};\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("function MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = options.vel;\n  this.radius = options.radius;\n  this.color = options.color;\n}\n\nMovingObject.prototype.draw = function(ctx) {\n  ctx.beginPath();\n  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);\n  ctx.strokeStyle = \"green\";\n  ctx.stroke();\n  ctx.fillStyle = this.color;\n  ctx.fill();\n};\n\nMovingObject.prototype.move = function() {\n  let new_pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];\n  this.pos = new_pos;\n  return new_pos;\n};\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const Util = {\n  inherits(childClass, parentClass) {\n    childClass.prototype = Object.create(parentClass.prototype);\n    childClass.prototype.constructor = childClass;\n  },\n\n  randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n  },\n  // Scale the length of a vector by the given amount.\n  scale(vec, m) {\n    return [vec[0] * m, vec[1] * m];\n  }\n\n};\n\nmodule.exports = Util;\n\n\n//# sourceURL=webpack:///./src/utils.js?");
 
 /***/ })
 
