@@ -91,9 +91,20 @@
   !*** ./src/index.js ***!
   \**********************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("console.log(\"Webpack is working!\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function(event) {\n  const c = document.getElementById(\"game-canvas\");\n  const ctx = c.getContext(\"2d\");\n  window.ctx = ctx;\n});\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/moving_object.js":
+/*!******************************!*\
+  !*** ./src/moving_object.js ***!
+  \******************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log(\"Webpack is working!\")\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("function MovingObject(options) {\n  this.pos = options.pos;\n  this.vel = options.vel;\n  this.radius = options.radius;\n  this.color = options.color;\n}\n\nMovingObject.prototype.draw = function(ctx) {\n  ctx.beginPath();\n  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);\n  ctx.strokeStyle = \"green\";\n  ctx.stroke();\n  ctx.fillStyle = \"blue\";\n  ctx.fill();\n};\n\nMovingObject.prototype.move = function() {\n  let new_pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];\n  this.pos = new_pos;\n  return new_pos;\n};\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ })
 
