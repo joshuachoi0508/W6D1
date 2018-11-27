@@ -49,7 +49,7 @@
 
 
 
- 
+
 //build inherits function using ES5 methods
 
 // Function.prototype.inherits = function(parent) {
